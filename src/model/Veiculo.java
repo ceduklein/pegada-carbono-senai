@@ -12,6 +12,7 @@ public class Veiculo {
 		this.modelo = modelo;
 		this.placa = placa;
 		this.kmLitro = kmLitro;
+		this.disponivel = true;
 	}
 
 	public int getId() {

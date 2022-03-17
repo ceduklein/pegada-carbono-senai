@@ -1,19 +1,19 @@
 package model;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 public class Chamado {
 
 	private int id;
-	private LocalDate dataInicio;
-	private LocalDate dataFim;
+	private String dataInicio;
+	private String dataFim;
 	private String endereco;
 	private Double distancia;
 	private double pegadaCarbono;
 	private Colaborador colaborador;
 	private Veiculo veiculo;
 		
-	public Chamado(LocalDate dataInicio, String endereco, Double distancia, Colaborador colaborador, Veiculo veiculo) {
+	public Chamado(String dataInicio, String endereco, Double distancia, Colaborador colaborador, Veiculo veiculo) {
 		if (colaborador.isHabilitado()) {
 			if (veiculo.isDisponivel()) {
 				this.dataInicio = dataInicio;
@@ -36,16 +36,16 @@ public class Chamado {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDate getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
-	public void setDataInicio(LocalDate dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	public LocalDate getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
-	public void setDataFim(LocalDate dataFim) {
+	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
 	public String getEndereco() {
@@ -83,6 +83,5 @@ public class Chamado {
 		Double consumo = distancia / veiculo.getKmLitro();
 		this.pegadaCarbono = consumo * 0.82 * 0.75 * 3.7;
 	}
-	
 	
 }
