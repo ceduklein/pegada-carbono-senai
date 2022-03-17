@@ -17,6 +17,7 @@ public class Principal {
 		Veiculo carro2 = new Veiculo("Mobi", "MCH2020", 16.5);
 		carro1.setDisponivel(false);
 		
+		//Chamado deve ser criado com sucesso
 		Chamado ch1 = new Chamado("2022-03-17", "Rua 150", 100.00, colab2, carro2);
 		
 		System.out.println("Data chamado: " + ch1.getDataInicio());
@@ -24,6 +25,17 @@ public class Principal {
 		System.out.println("Modelo: " + ch1.getVeiculo().getModelo() + " Placa: " + ch1.getVeiculo().getPlaca());
 		System.out.println("Distância: " + ch1.getDistancia());
 		System.out.println("Emissão CO²: " + ch1.getPegadaCarbono());
+		
+		System.out.println("--------------------------------");
+		
+		//Chamado deve cair na verificação de colaborador habilitado
+		Chamado ch2 = new Chamado("2022-03-17", "Rua 250", 200.00, colab1, carro2);
+		System.out.println(ch2.getDataInicio());
+		System.out.println("--------------------------------");
+		
+		//Chamado deve cair na verificação de veiculo não disponível
+		Chamado ch3 = new Chamado("2022-03-17", "Rua 350", 150.00, colab2, carro1);
+		System.out.println(ch2.getDataInicio());
 		
 	}
 
