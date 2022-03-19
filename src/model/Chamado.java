@@ -1,21 +1,21 @@
 package model;
 
-//import java.time.LocalDate;
+import java.time.LocalDate;
 
 public class Chamado {
 
 	private int id;
-	private String dataInicio;
-	private String dataFim;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
 	private String endereco;
 	private Double distancia;
 	private double pegadaCarbono;
 	private Colaborador colaborador;
 	private Veiculo veiculo;
 		
-	public Chamado(String dataInicio, String endereco, Double distancia, Colaborador colaborador, Veiculo veiculo) {
+	public Chamado(LocalDate dataInicio, String endereco, Double distancia, Colaborador colaborador, Veiculo veiculo) throws Exception {
 		if (colaborador.isHabilitado()) {
-			if (veiculo.isDisponivel()) {
+			if(veiculo.isDisponivel()) {
 				this.dataInicio = dataInicio;
 				this.endereco = endereco;
 				this.distancia = distancia;
@@ -23,10 +23,10 @@ public class Chamado {
 				this.veiculo = veiculo;
 				calcularPegadaCarbono();
 			} else {
-				System.out.println("Veículo está em uso. Favor selecionar veículo disponível.");
+				throw new Exception("Veículo não disponível.");
 			}
 		} else {
-			System.out.println("Colaborador não é habilitado. Favor indicar colaborador habilitado");
+			throw new Exception("Colaborador não habilitado.");
 		}
 	}
 	
@@ -36,16 +36,16 @@ public class Chamado {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getDataInicio() {
+	public LocalDate getDataInicio() {
 		return dataInicio;
 	}
-	public void setDataInicio(String dataInicio) {
+	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	public String getDataFim() {
+	public LocalDate getDataFim() {
 		return dataFim;
 	}
-	public void setDataFim(String dataFim) {
+	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
 	}
 	public String getEndereco() {
