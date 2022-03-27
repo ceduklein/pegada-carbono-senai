@@ -4,43 +4,7 @@ import controller.ColaboradorController;
 import model.Colaborador;
 
 public class TesteColaborador {
-	
-	public static void testeGeral() {
 		
-		Colaborador c1 = new Colaborador("Carlos Klein");
-		c1.setId(1);
-		c1.setHabilitado(true);
-		
-		Colaborador c2 = new Colaborador("Henrique");
-		c2.setId(2);
-		c2.setHabilitado(true);
-		
-		Colaborador c3 = new Colaborador("Funcionário Fantasma");
-		c2.setId(3);
-		
-		ColaboradorController controller = new ColaboradorController();
-		try {
-			controller.salvar(c1);
-			controller.salvar(c2);
-			controller.salvar(c3);
-		} catch (Exception e) {
-			System.out.println(e.getLocalizedMessage());
-		}
-		
-		try {
-			List<Colaborador> colaboradores = controller.listar();
-			colaboradores.forEach(c -> {
-				System.out.println("Colaborador: " + c.getNome());
-				System.out.println("Habilitado: " + c.isHabilitado());
-				System.out.println("----");
-			});
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		System.out.println("---------------------------------------------------");
-	}
-	
 	public static void testeListaSemColaboradores() {
 		ColaboradorController controller = new ColaboradorController();
 		
