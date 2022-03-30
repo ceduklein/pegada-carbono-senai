@@ -74,7 +74,7 @@ public class Chamado {
 	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
 	}
-	
+
 	public void calcularPegadaCarbono() {
 		Double consumo = distancia / veiculo.getKmLitro();
 		this.pegadaCarbono = consumo * 0.82 * 0.75 * 3.7;

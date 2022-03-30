@@ -15,8 +15,8 @@ public class Principal {
 //		TesteChamado.testeListaSemChamados();
 //		TesteChamado.testeChamadoColaboradorNaoHabilitado();
 //		TesteChamado.testeChamadoVeiculoIndisponivel();
-		TesteChamado.testeChamadoCriadoEFinalizado();
-//		TesteChamado.testeListaChamadosEExclusao();
+//		TesteChamado.testeChamadoCriadoEFinalizado();
+		TesteChamado.testeCriarListarTodosExcluirListarTodos();
 		
 	}
 	

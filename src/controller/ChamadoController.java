@@ -41,12 +41,14 @@ public class ChamadoController {
 		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
 	}
 	
-	public void excluir(int id) throws RegraNegocioException {
-		if (id == 0) {
-			throw new RegraNegocioException("Erro: Id chamado inválido");
+	public void excluir(Chamado chamado) throws RegraNegocioException {
+		if (chamado.getId() == 0) {
+			throw new RegraNegocioException("Erro: IdChamado inválido");
 		}
 		
-		ChamadoDao.getInstance().excluir(id);
+		ChamadoDao.getInstance().excluir(chamado.getId());
+		chamado.getVeiculo().setDisponivel(true);
+		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
 	}
 	
 	public List<Chamado> listar() throws RegraNegocioException {
