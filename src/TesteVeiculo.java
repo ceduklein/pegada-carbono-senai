@@ -15,19 +15,16 @@ public class TesteVeiculo {
 		}
 	}
 
-	public static void testeEspecificoVeiculo() {
+	public static void testeCriarListarTodosAlterarListarUmExcluir() {
 		
-		System.out.println("---- Criando 3 veiculos e listando ----");
+		System.out.println("\n---- Deve criar três veículos e listar todos ----");
 		
 		Veiculo v1 = new Veiculo("Civic", "KXQ8J91", 10.5);
-		v1.setId(1);
 		
 		Veiculo v2 = new Veiculo("Mobi", "MLQ2750", 14.5);
-		v2.setId(2);
 		v2.setDisponivel(false);
 		
 		Veiculo v3 = new Veiculo("Sandero", "PXQ3344", 13.0);
-		v3.setId(3);
 		
 		VeiculoController controller = new VeiculoController();
 		
@@ -40,16 +37,17 @@ public class TesteVeiculo {
 			veiculos.forEach(v -> {
 				System.out.println("Modelo: " + v.getModelo() + " Id: " + v.getId() + " Consumo: " + v.getKmLitro() + "/litro");
 				System.out.println("Placa: " + v.getPlaca() + " Disponível: " + v.isDisponivel());
-				System.out.println("----");
+				System.out.println("-------");
 			});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
-		System.out.println("---- Alterando modelo e e disponibilidade v2 e listando apenas v2 ----");
+		System.out.println("\n---- Deve alterar o cadastro de um veículo e listar apenas o cadastro alterado ----");
 		
 		v2.setDisponivel(true);
-		v2.setModelo("KWID");
+		v2.setModelo("Teste Alteração Modelo");
+		v2.setId(2);
 		
 		try {
 			controller.atualizar(v2);
@@ -61,7 +59,7 @@ public class TesteVeiculo {
 			System.out.println(e.getMessage());
 		}
 		
-		System.out.println("---- Excluindo v2 e listando todos os veiculos novamente ----");
+		System.out.println("\n---- Deve excluir um veículo e listar todos os restantes ----");
 		
 		try {
 			controller.excluir(v2.getId());
@@ -70,7 +68,7 @@ public class TesteVeiculo {
 			veiculos.forEach(v -> {
 				System.out.println("Modelo: " + v.getModelo() + " Id: " + v.getId() + " Consumo: " + v.getKmLitro() + "/litro");
 				System.out.println("Placa: " + v.getPlaca() + " Disponível: " + v.isDisponivel());
-				System.out.println("----");
+				System.out.println("-------");
 			});
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

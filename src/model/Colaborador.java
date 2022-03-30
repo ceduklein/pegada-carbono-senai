@@ -9,6 +9,8 @@ public class Colaborador {
 	public Colaborador(String nome) {
 		this.nome = nome;
 	}
+	
+	public Colaborador() {}
 
 	public int getId() {
 		return id;

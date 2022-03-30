@@ -27,16 +27,18 @@ public class ChamadoController {
 		}
 		
 		ChamadoDao.getInstance().criarChamado(chamado);
-		VeiculoDao.getInstance().tornarIndisponivel(chamado.getVeiculo());
+		chamado.getVeiculo().setDisponivel(false);
+		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
 	}
 	
 	public void encerrarChamado(Chamado chamado) throws RegraNegocioException {
-		if (chamado.getDataFim() == null) {
-			throw new RegraNegocioException("Erro: Data de encerramento inválida.");
+		if (!chamado.isConcluido()) {
+			throw new RegraNegocioException("Erro: Chamado não foi concluído.");
 		}
 		
 		ChamadoDao.getInstance().atualizar(chamado);
-		VeiculoDao.getInstance().tornarDisponivel(chamado.getVeiculo());
+		chamado.getVeiculo().setDisponivel(true);
+		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
 	}
 	
 	public void excluir(int id) throws RegraNegocioException {

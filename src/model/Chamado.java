@@ -1,26 +1,29 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Chamado {
 
 	private int id;
-	private LocalDateTime dataInicio;
-	private LocalDateTime dataFim;
+	private LocalDate dataInicio;
 	private String endereco;
 	private Double distancia;
 	private double pegadaCarbono;
+	private boolean concluido;
 	private Colaborador colaborador;
 	private Veiculo veiculo;
 		
-	public Chamado(LocalDateTime dataInicio, String endereco, Double distancia, Colaborador colaborador, Veiculo veiculo) {
+	public Chamado(LocalDate dataInicio, String endereco, Double distancia, Colaborador colaborador, Veiculo veiculo) {
 				this.dataInicio = dataInicio;
 				this.endereco = endereco;
 				this.distancia = distancia;
 				this.colaborador = colaborador;
 				this.veiculo = veiculo;
+				this.concluido = false;
 				calcularPegadaCarbono();
 	}
+	
+	public Chamado() {}
 	
 	public int getId() {
 		return id;
@@ -28,18 +31,19 @@ public class Chamado {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDateTime getDataInicio() {
+	public LocalDate getDataInicio() {
 		return dataInicio;
 	}
-	public void setDataInicio(LocalDateTime dataInicio) {
+	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	public LocalDateTime getDataFim() {
-		return dataFim;
+	public boolean isConcluido() {
+		return concluido;
 	}
-	public void setDataFim(LocalDateTime dataFim) {
-		this.dataFim = dataFim;
+	public void setConcluido(boolean concluido) {
+		this.concluido = concluido;
 	}
+
 	public String getEndereco() {
 		return endereco;
 	}
