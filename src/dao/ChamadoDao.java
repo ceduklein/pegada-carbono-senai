@@ -121,33 +121,32 @@ public class ChamadoDao {
 		
 		try {
 			String sql = "select * from chamado c join colaborador colab on c.colaborador_idColaborador = colab.idColaborador"
-					+ " join veiculo v on c.veiculo_idVeiculo = v.idVeiculo;";
+					+ " join veiculo v on c.veiculo_idVeiculo = v.idVeiculo where idChamado = ?;";
 			
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (rs.getInt("idChamado") == id) {
-					c.setId(rs.getInt("idChamado"));
-					c.setDataInicio((rs.getDate("data_inicio").toLocalDate()));
-					c.setConcluido(rs.getBoolean("concluido"));
-					c.setEndereco(rs.getString("endereco"));
-					c.setDistancia(rs.getDouble("distancia"));
-					c.setPegadaCarbono(rs.getDouble("carbono"));
-					
-					Veiculo v = new Veiculo();
-					v.setId(rs.getInt("idVeiculo"));
-					v.setModelo(rs.getString("modelo"));
-					v.setPlaca(rs.getString("placa"));
-					v.setKmLitro(rs.getDouble("km_litro"));
-					v.setDisponivel(rs.getBoolean("disponivel"));
-					
-					Colaborador colab = new Colaborador(rs.getString("nome"));
-					colab.setHabilitado(rs.getBoolean("habilitado"));
-					colab.setId(rs.getInt("idColaborador"));
-					
-					c.setVeiculo(v);
-					c.setColaborador(colab);
-				}
+				c.setId(rs.getInt("idChamado"));
+				c.setDataInicio((rs.getDate("data_inicio").toLocalDate()));
+				c.setConcluido(rs.getBoolean("concluido"));
+				c.setEndereco(rs.getString("endereco"));
+				c.setDistancia(rs.getDouble("distancia"));
+				c.setPegadaCarbono(rs.getDouble("carbono"));
+				
+				Veiculo v = new Veiculo();
+				v.setId(rs.getInt("idVeiculo"));
+				v.setModelo(rs.getString("modelo"));
+				v.setPlaca(rs.getString("placa"));
+				v.setKmLitro(rs.getDouble("km_litro"));
+				v.setDisponivel(rs.getBoolean("disponivel"));
+				
+				Colaborador colab = new Colaborador(rs.getString("nome"));
+				colab.setHabilitado(rs.getBoolean("habilitado"));
+				colab.setId(rs.getInt("idColaborador"));
+				
+				c.setVeiculo(v);
+				c.setColaborador(colab);
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();

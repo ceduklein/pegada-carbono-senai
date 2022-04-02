@@ -68,8 +68,8 @@ public class TesteChamado {
 
 	public static void testeChamadoCriadoEFinalizado() {
 		
-		System.out.println("\n---- Deve criar chamado e tornar o veículo utilizado indisponível. "
-				+ "Depois encerrar chamado e tornar veiculo disponível novamente ----");
+		System.out.println("\n---- Deve criar chamado e setar o veículo utilizado como indisponível. "
+				+ "Depois encerrar chamado e setar veiculo como disponível novamente ----");
 		
 		ChamadoController controller = new ChamadoController();
 		ColaboradorController colabController = new ColaboradorController();

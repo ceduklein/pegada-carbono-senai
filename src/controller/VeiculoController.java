@@ -48,14 +48,9 @@ public class VeiculoController {
 		VeiculoDao.getInstance().excluir(id);
 	}
 	
-	public List<Veiculo> listar() throws RegraNegocioException {
+	public List<Veiculo> listar() {
 		List<Veiculo> veiculos = VeiculoDao.getInstance().listar();
-		
-		if (veiculos.isEmpty()) {
-			throw new RegraNegocioException("Erro: Não existem veículos cadastrados.");
-		} else {
-			return veiculos;
-		}
+		return veiculos;
 	}
 	
 	public Veiculo listById(int id) {

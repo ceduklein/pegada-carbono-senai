@@ -87,17 +87,16 @@ public class VeiculoDao {
 	public Veiculo listById(int id) {
 		Veiculo v = new Veiculo();
 		try {
-			String sql = "select * from veiculo;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			String sql = "select * from veiculo where idVeiculo = ?;";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (rs.getInt("idVeiculo") == id) {
-					v.setId(rs.getInt("idVeiculo"));
-					v.setModelo(rs.getString("modelo"));
-					v.setPlaca(rs.getString("placa"));
-					v.setKmLitro(rs.getDouble("km_litro"));
-					v.setDisponivel(rs.getBoolean("disponivel"));
-				}
+				v.setId(rs.getInt("idVeiculo"));
+				v.setModelo(rs.getString("modelo"));
+				v.setPlaca(rs.getString("placa"));
+				v.setKmLitro(rs.getDouble("km_litro"));
+				v.setDisponivel(rs.getBoolean("disponivel"));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();

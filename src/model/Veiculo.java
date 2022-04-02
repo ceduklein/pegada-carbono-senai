@@ -15,7 +15,9 @@ public class Veiculo {
 		this.disponivel = true;
 	}
 	
-	public Veiculo() {}
+	public Veiculo() {
+		this.disponivel = true;
+	}
 
 	public int getId() {
 		return id;

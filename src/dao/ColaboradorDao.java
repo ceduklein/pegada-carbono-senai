@@ -83,15 +83,14 @@ public class ColaboradorDao {
 		Colaborador c = new Colaborador();
 		
 		try {
-			String sql = "select * from colaborador;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			String sql = "select * from colaborador where idColaborador = ?;";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if  (rs.getInt("idColaborador") == id) {
-					c.setId(rs.getInt("idColaborador"));
-					c.setNome(rs.getString("nome"));
-					c.setHabilitado(rs.getBoolean("habilitado"));
-				}
+				c.setId(rs.getInt("idColaborador"));
+				c.setNome(rs.getString("nome"));
+				c.setHabilitado(rs.getBoolean("habilitado"));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();

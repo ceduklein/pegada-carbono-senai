@@ -36,4 +36,8 @@ public class Colaborador {
 		this.habilitado = habilitado;
 	}
 	
+	public String toString() {
+		return nome;
+	}
+	
 }

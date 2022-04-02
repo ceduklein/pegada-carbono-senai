@@ -32,14 +32,9 @@ public class ColaboradorController {
 		ColaboradorDao.getInstance().excluir(id);
 	}
 	
-	public List<Colaborador> listar() throws RegraNegocioException {
+	public List<Colaborador> listar() {
 		List<Colaborador> colaboradores = ColaboradorDao.getInstance().listar();
-		
-		if (colaboradores.isEmpty()) {
-			throw new RegraNegocioException("Erro: Não existem colaboradores cadastrados.");
-		} else {
-			return colaboradores;
-		}
+		return colaboradores;
 	}
 	
 	public Colaborador listById(int id) {
