@@ -1,4 +1,4 @@
-package view;
+package view.veiculos;
 
 import java.awt.EventQueue;
 
@@ -51,7 +51,7 @@ public class CadastroVeiculoUI extends JInternalFrame {
 		setClosable(true);
 		setTitle("Ve\u00EDculos");
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		setBounds(100, 100, 533, 245);
+		setBounds(100, 100, 533, 225);
 		
 		JPanel lblConsumo = new JPanel();
 		lblConsumo.setBorder(new TitledBorder(null, "Cadastrar Ve\u00EDculo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -82,34 +82,34 @@ public class CadastroVeiculoUI extends JInternalFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setForeground(new Color(255, 0, 0));
+		btnCancelar.setForeground(new Color(0, 0, 0));
 		btnCancelar.setBackground(new Color(220, 220, 220));
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(325)
 							.addComponent(btnCancelar)
 							.addGap(18)
 							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblConsumo, GroupLayout.PREFERRED_SIZE, 503, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(133, Short.MAX_VALUE))
+					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblConsumo, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnSalvar)
-						.addComponent(btnCancelar))
-					.addContainerGap(34, Short.MAX_VALUE))
+					.addComponent(lblConsumo, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancelar)
+						.addComponent(btnSalvar))
+					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		
 		JLabel lblModelo = new JLabel("Modelo:");

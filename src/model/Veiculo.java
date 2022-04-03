@@ -59,4 +59,8 @@ public class Veiculo {
 		this.kmLitro = kmLitro;
 	}
 	
+	public String toString() {
+		return modelo + " - Placa: " + placa;
+	}
+	
 }

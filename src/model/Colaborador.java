@@ -37,7 +37,7 @@ public class Colaborador {
 	}
 	
 	public String toString() {
-		return nome;
+		return "Id: " + id + " - " + nome; 
 	}
 	
 }

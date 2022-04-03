@@ -10,25 +10,34 @@ import model.Chamado;
 public class ChamadoController {
 
 	public void criarChamado(Chamado chamado) throws RegraNegocioException {
-		if (chamado.getDataInicio() == null) {
+		if (chamado.getDataInicio() == null) 
 			throw new RegraNegocioException("Erro: Data de início inválida.");
-		}
 		
-		if (chamado.getEndereco() == null || chamado.getEndereco().length() < 5) {
+		if (chamado.getEndereco() == null || chamado.getEndereco().length() < 5) 
 			throw new RegraNegocioException("Erro: Endereço inválido.");
-		}
 		
-		if (!chamado.getColaborador().isHabilitado()) {
+		if (chamado.getDistancia() < 1)
+			throw new RegraNegocioException("Erro: Distância inválida.");
+		
+		if (!chamado.getColaborador().isHabilitado()) 
 			throw new RegraNegocioException("Erro: Colaborador não habilitado.");
-		}
 		
-		if (!chamado.getVeiculo().isDisponivel()) {
+		if (!chamado.getVeiculo().isDisponivel()) 
 			throw new RegraNegocioException("Erro: Veículo não disponível.");
-		}
 		
 		ChamadoDao.getInstance().criarChamado(chamado);
 		chamado.getVeiculo().setDisponivel(false);
 		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
+	}
+	
+	public void atualizar(Chamado chamado) throws RegraNegocioException {
+		if (chamado.getEndereco() == null || chamado.getEndereco().length() < 5)
+			throw new RegraNegocioException("Erro: Endereço inválido."); 
+		
+		if (chamado.getDistancia() < 1)
+			throw new RegraNegocioException("Erro: Distância inválida.");
+		
+		ChamadoDao.getInstance().atualizar(chamado);
 	}
 	
 	public void encerrarChamado(Chamado chamado) throws RegraNegocioException {
@@ -51,13 +60,8 @@ public class ChamadoController {
 		VeiculoDao.getInstance().atualizar(chamado.getVeiculo());
 	}
 	
-	public List<Chamado> listar() throws RegraNegocioException {
+	public List<Chamado> listar() {
 		List<Chamado> chamados = ChamadoDao.getInstance().listar();
-		
-		if(chamados.isEmpty()) {
-			throw new RegraNegocioException("Erro: Não existem chamados cadastrados.");
-		}
-		
 		return chamados;
 	}
 	

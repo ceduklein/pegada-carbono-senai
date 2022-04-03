@@ -8,7 +8,7 @@ public class Chamado {
 	private LocalDate dataInicio;
 	private String endereco;
 	private Double distancia;
-	private double pegadaCarbono;
+	private Double pegadaCarbono;
 	private boolean concluido;
 	private Colaborador colaborador;
 	private Veiculo veiculo;
@@ -56,10 +56,10 @@ public class Chamado {
 	public void setDistancia(Double distancia) {
 		this.distancia = distancia;
 	}
-	public double getPegadaCarbono() {
+	public Double getPegadaCarbono() {
 		return pegadaCarbono;
 	}
-	public void setPegadaCarbono(double pegadaCarbono) {
+	public void setPegadaCarbono(Double pegadaCarbono) {
 		this.pegadaCarbono = pegadaCarbono;
 	}
 	public Colaborador getColaborador() {

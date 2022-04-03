@@ -128,7 +128,7 @@ public class ChamadoDao {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				c.setId(rs.getInt("idChamado"));
-				c.setDataInicio((rs.getDate("data_inicio").toLocalDate()));
+				c.setDataInicio(rs.getDate("data_inicio").toLocalDate());
 				c.setConcluido(rs.getBoolean("concluido"));
 				c.setEndereco(rs.getString("endereco"));
 				c.setDistancia(rs.getDouble("distancia"));
