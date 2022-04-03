@@ -81,6 +81,7 @@ public class ListaChamadoUI extends JInternalFrame {
 						chamadoController.excluir(c);
 						JOptionPane.showMessageDialog(null, "Chamado excluído.");
 						tblChamado.setModel(new ChamadoTableModel(chamadoController.listar()));
+						formatarTabela();
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Erro ao excluir o chamado selecionado.");
 					}
@@ -103,6 +104,7 @@ public class ListaChamadoUI extends JInternalFrame {
 						chamadoController.encerrarChamado(c);
 						JOptionPane.showMessageDialog(null, "Chamado encerrado.");
 						tblChamado.setModel(new ChamadoTableModel(chamadoController.listar()));
+						formatarTabela();
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Erro ao encerrar o chamado selecionado.");
 					}
@@ -127,6 +129,7 @@ public class ListaChamadoUI extends JInternalFrame {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tblChamado.setModel(new ChamadoTableModel(chamadoController.listar()));
+				formatarTabela();
 			}
 		});
 		btnAtualizar.setBackground(new Color(220, 220, 220));
@@ -203,15 +206,25 @@ public class ListaChamadoUI extends JInternalFrame {
 					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		
+		
+		
+		tblChamado = new JTable();
+		tblChamado.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		tblChamado.setModel(new ChamadoTableModel(chamadoController.listar()));
+		formatarTabela();
+		scrollPane.setViewportView(tblChamado);
+		jpListaChamado.setLayout(gl_jpListaChamado);
+		getContentPane().setLayout(groupLayout);
+
+	}
+	
+	private void formatarTabela() {
 		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
 		esquerda.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		tblChamado = new JTable();
-		tblChamado.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		tblChamado.setModel(new ChamadoTableModel(chamadoController.listar()));
 		tblChamado.getColumnModel().getColumn(0).setPreferredWidth(8);
 		tblChamado.getColumnModel().getColumn(0).setCellRenderer(centro);
 		tblChamado.getColumnModel().getColumn(1).setPreferredWidth(40);
@@ -228,9 +241,5 @@ public class ListaChamadoUI extends JInternalFrame {
 		tblChamado.getColumnModel().getColumn(6).setCellRenderer(esquerda);
 		tblChamado.getColumnModel().getColumn(7).setPreferredWidth(45);
 		tblChamado.getColumnModel().getColumn(7).setCellRenderer(esquerda);
-		scrollPane.setViewportView(tblChamado);
-		jpListaChamado.setLayout(gl_jpListaChamado);
-		getContentPane().setLayout(groupLayout);
-
 	}
 }

@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import controller.VeiculoController;
 import model.Veiculo;
@@ -16,6 +17,8 @@ import view.tables.VeiculoTableModel;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -94,6 +97,7 @@ public class ListaVeiculoUI extends JInternalFrame {
 					try {
 						veiculoController.excluir(veiculo.getId());
 						tblVeiculos.setModel(new VeiculoTableModel(veiculoController.listar()));
+						formatarTabela();
 						JOptionPane.showMessageDialog(null, "Veículo excluído.");
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Erro ao excluir o cadastro do veículo.");
@@ -121,6 +125,7 @@ public class ListaVeiculoUI extends JInternalFrame {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tblVeiculos.setModel(new VeiculoTableModel(veiculoController.listar()));
+				formatarTabela();
 			}
 		});
 		btnAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -173,9 +178,24 @@ public class ListaVeiculoUI extends JInternalFrame {
 		tblVeiculos = new JTable();
 		tblVeiculos.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tblVeiculos.setModel(new VeiculoTableModel(veiculoController.listar()));
+		formatarTabela();
 		scrollPane.setViewportView(tblVeiculos);
 		jpListaVeiculo.setLayout(gl_jpListaVeiculo);
 		getContentPane().setLayout(groupLayout);
-
+	}
+	
+	private void formatarTabela() {
+		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
+		centro.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
+		esquerda.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		tblVeiculos.getColumnModel().getColumn(0).setPreferredWidth(20);
+		tblVeiculos.getColumnModel().getColumn(0).setCellRenderer(centro);
+		tblVeiculos.getColumnModel().getColumn(1).setPreferredWidth(200);
+		tblVeiculos.getColumnModel().getColumn(1).setCellRenderer(esquerda);
+		tblVeiculos.getColumnModel().getColumn(2).setCellRenderer(centro);
+		tblVeiculos.getColumnModel().getColumn(3).setCellRenderer(centro);
 	}
 }

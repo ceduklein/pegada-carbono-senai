@@ -39,14 +39,8 @@ public class EditChamadoUI extends JInternalFrame {
 	private JTextField txtColab;
 	private JTextField txtVeiculo;
 	private JTextField txtPlaca;
-	private JTextField txtIdVeiculo;
-	private JTextField txtIdColab;
-	private JTextField txtKmLitro;
 	
 	private Chamado chamado;
-	
-	private JCheckBox chckbxHabilitado = new JCheckBox("Habilitado");
-	private JCheckBox chckbxDisponivel = new JCheckBox("Disponivel");
 
 	/**
 	 * Launch the application.
@@ -73,7 +67,7 @@ public class EditChamadoUI extends JInternalFrame {
 		setClosable(true);
 		setTitle("Chamados");
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		setBounds(100, 100, 699, 376);
+		setBounds(100, 100, 561, 324);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Editar, Encerrar ou Excluir Chamado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -218,100 +212,53 @@ public class EditChamadoUI extends JInternalFrame {
 		txtPlaca.setEditable(false);
 		txtPlaca.setColumns(10);
 		
-		JLabel lblIdVeiculo = new JLabel("Id Ve\u00EDculo:");
-		lblIdVeiculo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		txtIdVeiculo = new JTextField();
-		txtIdVeiculo.setEditable(false);
-		txtIdVeiculo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtIdVeiculo.setColumns(10);
-		
-		JLabel lblIdColab = new JLabel("Id Colaborador:");
-		lblIdColab.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		txtIdColab = new JTextField();
-		txtIdColab.setEditable(false);
-		txtIdColab.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtIdColab.setColumns(10);
-		
-		chckbxHabilitado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		chckbxHabilitado.setEnabled(false);
-		
-		chckbxDisponivel.setEnabled(false);
-		chckbxDisponivel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		JLabel lblDesempenho = new JLabel("Desempenho:");
-		lblDesempenho.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		txtKmLitro = new JTextField();
-		lblDesempenho.setLabelFor(txtKmLitro);
-		txtKmLitro.setEditable(false);
-		txtKmLitro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtKmLitro.setColumns(10);
-		
-		JLabel lblKmLitro = new JLabel("km/litro");
-		lblKmLitro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblKm = new JLabel("km");
+		lblKm.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addComponent(lblId)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtId, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-							.addGap(72)
+							.addGap(18)
 							.addComponent(lblData)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+							.addGap(18)
 							.addComponent(lblSituacao)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtSituacao, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(txtSituacao))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(lblColab)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtColab))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addComponent(lblEndereco)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtEndereco, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE))
-						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(txtEndereco))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 							.addComponent(lblDistancia)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtDistancia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtDistancia, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblKm)
 							.addGap(29)
 							.addComponent(lblCarbono)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtCarbono, GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
+							.addComponent(txtCarbono, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblIdColab)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtIdColab, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblColab)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtColab, GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(chckbxHabilitado))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblPlaca)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPlaca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(39)
-							.addComponent(lblDesempenho)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtKmLitro, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblKmLitro)
-							.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-							.addComponent(chckbxDisponivel))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblIdVeiculo)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtIdVeiculo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-							.addGap(24)
 							.addComponent(lblVeiculo)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtVeiculo, GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))
-					.addContainerGap())
+							.addComponent(txtVeiculo, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(lblPlaca)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtPlaca, 0, 0, Short.MAX_VALUE)))
+					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -320,10 +267,10 @@ public class EditChamadoUI extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblId)
 						.addComponent(txtId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtSituacao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSituacao)
 						.addComponent(lblData)
-						.addComponent(txtData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSituacao)
+						.addComponent(txtSituacao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEndereco)
@@ -332,39 +279,29 @@ public class EditChamadoUI extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDistancia)
 						.addComponent(txtDistancia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblKm)
 						.addComponent(lblCarbono)
 						.addComponent(txtCarbono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(26)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblIdColab)
-						.addComponent(txtIdColab, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(chckbxHabilitado)
 						.addComponent(lblColab)
 						.addComponent(txtColab, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblIdVeiculo)
-						.addComponent(txtIdVeiculo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblVeiculo)
 						.addComponent(txtVeiculo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblVeiculo))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPlaca)
 						.addComponent(txtPlaca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblKmLitro)
-						.addComponent(txtKmLitro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDesempenho)
-						.addComponent(chckbxDisponivel))
-					.addGap(27))
+						.addComponent(lblPlaca))
+					.addContainerGap(56, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
 							.addComponent(btnAtualizar)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnEncerrar)
@@ -372,21 +309,23 @@ public class EditChamadoUI extends JInternalFrame {
 							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnCancelar))
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE))
-					.addContainerGap())
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnExcluir)
 						.addComponent(btnEncerrar)
 						.addComponent(btnAtualizar))
-					.addGap(188))
+					.addGap(63))
 		);
 		getContentPane().setLayout(groupLayout);
 
@@ -398,7 +337,6 @@ public class EditChamadoUI extends JInternalFrame {
 	}
 	
 	private void preencherForm() {
-		// Preenche campos formulário parte chamado
 		LocalDate data = chamado.getDataInicio();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String dataFormatada = data.format(formatter);
@@ -410,22 +348,14 @@ public class EditChamadoUI extends JInternalFrame {
 		txtEndereco.setText(chamado.getEndereco());
 		txtDistancia.setText(df.format(chamado.getDistancia()).toString());
 		txtCarbono.setText(chamado.getPegadaCarbono().toString());
-		
 		if (chamado.isConcluido())
 			txtSituacao.setText("Encerrado");
 		else
 			txtSituacao.setText("Em progresso");
 		
-		//Preenche campos formulário parte veículo
-		txtKmLitro.setText(chamado.getVeiculo().getKmLitro().toString());
-		chckbxDisponivel.setSelected(chamado.getVeiculo().isDisponivel());
-		txtIdVeiculo.setText(String.valueOf(chamado.getVeiculo().getId()));
 		txtVeiculo.setText(chamado.getVeiculo().getModelo());
 		txtPlaca.setText(chamado.getVeiculo().getPlaca());
 		
-		//Preenche campos formulário parte colaborador
 		txtColab.setText(chamado.getColaborador().getNome());
-		txtIdColab.setText(String.valueOf(chamado.getColaborador().getId()));
-		chckbxHabilitado.setSelected(chamado.getColaborador().isHabilitado());
 	}
 }

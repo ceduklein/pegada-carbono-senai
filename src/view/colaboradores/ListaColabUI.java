@@ -15,6 +15,7 @@ import model.Colaborador;
 import view.tables.ColabTableModel;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
@@ -22,6 +23,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
@@ -53,7 +56,7 @@ public class ListaColabUI extends JInternalFrame {
 		setClosable(true);
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		setTitle("Colaboradores");
-		setBounds(100, 100, 827, 348);
+		setBounds(100, 100, 584, 348);
 		
 		JPanel jpListaColab = new JPanel();
 		jpListaColab.setBorder(new TitledBorder(null, "Colaboradores Cadastrados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -62,15 +65,15 @@ public class ListaColabUI extends JInternalFrame {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(jpListaColab, GroupLayout.PREFERRED_SIZE, 801, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(12, Short.MAX_VALUE))
+					.addComponent(jpListaColab, GroupLayout.PREFERRED_SIZE, 560, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(104, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(jpListaColab, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(76, Short.MAX_VALUE))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -94,6 +97,7 @@ public class ListaColabUI extends JInternalFrame {
 					try {
 						new ColaboradorController().excluir(colab.getId());
 						tblColaboradores.setModel(new ColabTableModel(new ColaboradorController().listar()));
+						formatarTabela();
 						JOptionPane.showMessageDialog(null, "Colaborador excluído.");
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Erro ao excluir colaborador.");
@@ -123,6 +127,7 @@ public class ListaColabUI extends JInternalFrame {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tblColaboradores.setModel(new ColabTableModel(new ColaboradorController().listar()));
+				formatarTabela();
 			}
 		});
 		
@@ -138,14 +143,14 @@ public class ListaColabUI extends JInternalFrame {
 		btnCadastrar.setBackground(new Color(220, 220, 220));
 		GroupLayout gl_jpListaColab = new GroupLayout(jpListaColab);
 		gl_jpListaColab.setHorizontalGroup(
-			gl_jpListaColab.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_jpListaColab.createSequentialGroup()
+			gl_jpListaColab.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_jpListaColab.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_jpListaColab.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
 						.addGroup(gl_jpListaColab.createSequentialGroup()
 							.addComponent(btnAtualizar)
-							.addPreferredGap(ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
 							.addComponent(btnCadastrar)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
@@ -173,9 +178,23 @@ public class ListaColabUI extends JInternalFrame {
 		tblColaboradores = new JTable();
 		tblColaboradores.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		tblColaboradores.setModel(new ColabTableModel(new ColaboradorController().listar()));
+		formatarTabela();
 		scrollPane.setViewportView(tblColaboradores);
 		jpListaColab.setLayout(gl_jpListaColab);
 		getContentPane().setLayout(groupLayout);
-
+	}
+	
+	private void formatarTabela() {
+		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();
+		centro.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
+		esquerda.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		tblColaboradores.getColumnModel().getColumn(0).setPreferredWidth(20);
+		tblColaboradores.getColumnModel().getColumn(0).setCellRenderer(centro);
+		tblColaboradores.getColumnModel().getColumn(1).setPreferredWidth(250);
+		tblColaboradores.getColumnModel().getColumn(1).setCellRenderer(esquerda);
+		tblColaboradores.getColumnModel().getColumn(2).setCellRenderer(centro);
 	}
 }

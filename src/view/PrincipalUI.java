@@ -192,13 +192,12 @@ public class PrincipalUI extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 424, Short.MAX_VALUE)
+				.addGap(0, 1194, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 251, Short.MAX_VALUE)
+				.addGap(0, 473, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
 }
